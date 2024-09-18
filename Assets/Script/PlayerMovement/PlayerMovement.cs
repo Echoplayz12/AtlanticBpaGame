@@ -13,8 +13,15 @@ public class NewBehaviourScript : MonoBehaviour
 
     [Header("Configuration")]
     public float walkSpeed;
+
     public float runSpeed;
+
+    public float startYScale;
+    public float crouchSpeed;
+    public float crouchYScale;
+   
     public float jumpForce;
+
     public float impactThreshold;
 
     [Header("Runtime")]
@@ -22,11 +29,10 @@ public class NewBehaviourScript : MonoBehaviour
     bool isGrounded = false;
     bool isJumping = false;
     bool inWater = false;
-    float vyCache;
 
     //incase we want a score
-    private int count;
-    public TextMeshProUGUI countText;
+    //private int count;
+    //public TextMeshProUGUI countText;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +43,8 @@ public class NewBehaviourScript : MonoBehaviour
         //rigidbody call
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        startYScale = transform.localScale.y;
     }
 
     // Update is called once per frame
@@ -55,5 +63,17 @@ public class NewBehaviourScript : MonoBehaviour
         {
 
         }
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+
+            //change the movespeed to crouchspeed
+        }
+        if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        }
+        
     }
 }

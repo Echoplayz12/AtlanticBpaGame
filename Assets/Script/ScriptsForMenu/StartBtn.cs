@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class StartBtn : MonoBehaviour
 {
-    public void SceneChanger(string sceneName)
+    public void SceneChanger(int sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(1);
     }
 }

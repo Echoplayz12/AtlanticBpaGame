@@ -1,1 +1,5 @@
 Start: Begin on boat, Introduce the player character and boat NPC, describe what the characters doing there and the objective, PC swims down in a cutscene and begins to be chased by tentacles into the ruins.
+
+Middle: Gather logs throughout the game to give lore to the Player as well as gathering things to open up the palace
+
+End: End with a boss that gives the main artefact that gives a big piece of lore and a game modifier

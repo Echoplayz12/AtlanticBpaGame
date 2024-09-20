@@ -311,8 +311,10 @@ MonoBehaviour:
   startYScale: 1
   crouchSpeed: 3
   crouchYScale: 0.9
-  jumpForce: 8
-  impactThreshold: 8000
+  jumpForce: 10
+  jumpCooldown: 0.3
+  airMultiplier: 1
+  jumpKey: 32
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2

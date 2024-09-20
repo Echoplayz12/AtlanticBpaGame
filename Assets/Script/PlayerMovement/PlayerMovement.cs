@@ -16,7 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public float crouchYScale;
 
     public float jumpForce;
-    public float impactThreshold;
+    public float jumpCooldown;
+    public float airMultiplier;
+
+    [Header("Keybinds")]
+    public KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -35,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Runtime")]
     bool isGrounded;
-    bool isJumping;
+    bool jump;
     bool inWater;
     float vyCache;
 
@@ -53,18 +57,12 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         
         PlyerInput();
-
+        SpeedCtrl();
 
         //drag handler
         if (isGrounded)
         {
             rb.drag = gDrag;
-            //jumping condition
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.velocity = new Vector3(rb.velocity.x, 1f, rb.velocity.z);
-                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            }
         }
         else
         {
@@ -94,12 +92,53 @@ public class PlayerMovement : MonoBehaviour
         horizantalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        //if jumping statment
+        if (Input.GetKey(KeyCode.Space) && jump && isGrounded)
+        {
+            jump = false;
+
+            Jumping();
+
+            Invoke(nameof(RestJumping), jumpCooldown);
+        }
     }
 
     private void MovePlayer()
     {
+        //player model control
         moveDirection = body.forward * verticalInput + body.right * horizantalInput;
 
-        rb.AddForce(moveDirection.normalized * walkSpeed * 10f, ForceMode.Force);
+        //on ground
+        if (isGrounded)
+        {
+            rb.AddForce(moveDirection.normalized * walkSpeed * 10f, ForceMode.Force);
+        }
+        else if (!isGrounded)
+        {
+            rb.AddForce(moveDirection.normalized * walkSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+    }
+
+    private void SpeedCtrl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        //limit the velocity or speed of player to specified value
+        if (flatVel.magnitude > walkSpeed)
+        {
+            Vector3 limitVel = flatVel.normalized * walkSpeed;
+            rb.velocity = new Vector3(limitVel.x, rb.velocity.y, limitVel.z);
+        }
+    }
+    private void Jumping()
+    {
+        //reset the y value to 0 so it does not feel like your on moon when jumping 
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void RestJumping()
+    {
+        jump = true;
     }
 }

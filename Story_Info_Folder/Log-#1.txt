@@ -1,4 +1,13 @@
 Log #1
 	04,12,XX31 - Royal Researcher Sotirios
 		
-		"The sealevel has risen to the 
+		"The sealevel has risen to the to the Seventh Discrict earlier today, that is foruth district lost to the sea this year. If this continues at this pace I may not be able to
+		 save us from the ever rising tides. Today's expiriment is of this new substance that we found in the water that now swallows the lower districts. It is cyan in color, a 
+		 salty and pungent smell, and is remarkably viscous. The expiriment involves testing the substances' reaction to several materials we have on hand as well as introducing
+		 captured fauna from the surrounding ocean. Will add to the log after the expiriment."
+
+		"Something interesting happened ... when exposed to the new substance we found the captured fauna began to act strangely. At first the it was there only alterations to
+		 their behavior but after a period of half an hour their physical appearances had begun to undego some changes that completely defies our current understanding of animal
+		 biology. The first creature that we had exposed the substance to was a coconut crab, the alterations made by the substance had increased its' size and now allows it to 
+		 intake tremendous amounts of water and discharge it in large volumes, this may buy us some time with the ever rising tides. No other fauna have yet to show any changes as
+		 of yet, will continue to moniter. I will name the new substance Nektarios"

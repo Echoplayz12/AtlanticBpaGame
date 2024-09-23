@@ -4,139 +4,141 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [Header("References")]
-    public Rigidbody rb;
-    public Transform head;
-    public Camera cameraPos;
-
-    [Header("Configuration")]
+    [Header("Movement")]
     public float walkSpeed;
-
     public float runSpeed;
+    public float gDrag;
 
-    public float startYScale;
     public float crouchSpeed;
-    public float crouchYScale;
-   
-    public float jumpForce;
 
-    public float impactThreshold;
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+
+    [Header("Keybinds")]
+    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode runKey = KeyCode.LeftShift;
+    public KeyCode crouchKey = KeyCode.LeftControl;
+
+    [Header("Ground Check")]
+    public float crouchYScale;
+    public float startYScale;
+    public float playerHeight;
+    public LayerMask whatIsGround;
+
+
+    public Transform body;
+
+    float horizantalInput;
+    float verticalInput;
+
+    Vector3 moveDirection;
+
+    Rigidbody rb;
+
 
     [Header("Runtime")]
-    Vector3 newVelocity;
     bool isGrounded = false;
-    bool isJumping = false;
-    bool inWater = false;
-
+    bool readyJump;
+    bool inWater = true;
     float vyCache;
 
-    //incase we want a score
-    //private int count;
-    //public TextMeshProUGUI countText;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        //rigidbody call
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
-        startYScale = transform.localScale.y;
     }
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * 2f);
+        ///ground check
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        
+        PlyerInput();
+        SpeedCtrl();
 
-        newVelocity = Vector3.up * rb.velocity.y;
-        //if input key-left shift- can run, else walk
-        float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
-        newVelocity.x = Input.GetAxis("Horizontal") * speed;
-        newVelocity.z = Input.GetAxis("Vertical") * speed;
-
-        //jumping
-        if(isGrounded)
+        //drag handler
+        if (isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.velocity = new Vector3(rb.velocity.x, 1f, rb.velocity.z);
-                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            }
+            rb.drag = gDrag;
+        }
+        else
+        {
+            rb.drag = 0;
         }
         //crouching
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
 
             //change the movespeed to crouchspeed
         }
-        if(Input.GetKeyUp(KeyCode.LeftControl))
+        if(Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
+        if ()
     }
-    void FixedUpdate()
-    {
-        rb.velocity = transform.TransformDirection(newVelocity);
-        vyCache = rb.velocity.y;
-    }
-    void LateUpdate()
-    {
-        //vertical rotation
-        Vector3 e = head.eulerAngles;
-        e.x -= Input.GetAxis("Mouse Y") * 2f;
-        e.x = RestrictAngle(e.x, -90, 90f);
-        head.eulerAngles = e;
-    }
-    public static float RestrictAngle(float angle, float angleMin, float angleMax)
-    {
-        //clamp the vertical head roation/ I could of used Mathf.Clamp but didn't 
-        if (angle > 180)
-            angle -= 360;
-        else if (angle < -180)
-            angle += 360;
-        if (angle > angleMax)
-            angle = angleMax;
-        if (angle < angleMin)
-            angle = angleMin;
-        return angle;
-    }
-    void OnCollisionStay(Collision collision)
-    {
-        isGrounded = true;
-        isJumping = false;
-    }
-    void OnCollisionExit(Collision collision)
-    {
-        isGrounded = false;
-    }
-    void OnCollisionEnter(Collision collision)
-    {   // movment 
-        if (Vector3.Dot(collision.GetContact(0).normal, Vector3.up) < .5f)
-        {
-            if (rb.velocity.y < -5f)
-            {
-                rb.velocity = Vector3.up * rb.velocity.y;
-                return;
-            }
-        }
 
-        float acceleration = (rb.velocity.y - vyCache) / Time.fixedDeltaTime;
-        float impactForce = rb.mass * Mathf.Abs(acceleration);
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
 
-        if (impactForce >= impactThreshold)
+    private void PlyerInput()
+    {
+        horizantalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        //if jumping statment
+        if (Input.GetKeyDown(jumpKey) && readyJump && isGrounded)
         {
-            SceneManager.LoadScene(1);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            Jumping();
+
+            Invoke(nameof(RestJumping), jumpCooldown);
         }
     }
 
+    private void MovePlayer()
+    {
+        moveDirection = body.forward * verticalInput + body.right * horizantalInput;
+
+        //on ground
+        if (isGrounded)
+        {
+            rb.AddForce(moveDirection.normalized * walkSpeed * 10f, ForceMode.Force);
+        }
+        else if (!isGrounded)
+        {
+            rb.AddForce(moveDirection.normalized * walkSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+    }
+
+    private void SpeedCtrl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        //limit the velocity or speed of player to specified value
+        if (flatVel.magnitude > walkSpeed)
+        {
+            Vector3 limitVel = flatVel.normalized * walkSpeed;
+            rb.velocity = new Vector3(limitVel.x, rb.velocity.y, limitVel.z);
+        }
+    }
+    private void Jumping()
+    {
+        //reset the y value to 0 so it does not feel like your on moon when jumping 
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void RestJumping()
+    {
+        readyJump = true;
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float Health = 100;
+    [SerializeField] UnityEngine.Object Object;
     // Update is called once per frame
 
     public void Update()
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
 
         if (Health <= 0)
         {
-            
+            Destroy(Object);
         }
     }
     

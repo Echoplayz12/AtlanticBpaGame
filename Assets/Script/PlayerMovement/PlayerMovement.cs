@@ -11,9 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed;
     public float gDrag;
 
-    public float startYScale;
     public float crouchSpeed;
-    public float crouchYScale;
 
     public float jumpForce;
     public float jumpCooldown;
@@ -21,8 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode runKey = KeyCode.LeftShift;
+    public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
+    public float crouchYScale;
+    public float startYScale;
     public float playerHeight;
     public LayerMask whatIsGround;
 
@@ -38,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Runtime")]
-    bool isGrounded;
-    bool jump;
-    bool inWater;
+    bool isGrounded = false;
+    bool readyJump;
+    bool inWater = true;
     float vyCache;
 
 
@@ -69,17 +71,18 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
         }
         //crouching
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
 
             //change the movespeed to crouchspeed
         }
-        if(Input.GetKeyUp(KeyCode.LeftControl))
+        if(Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
+        if ()
     }
 
     private void FixedUpdate()
@@ -93,10 +96,8 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         //if jumping statment
-        if (Input.GetKey(KeyCode.Space) && jump && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && readyJump && isGrounded)
         {
-            jump = false;
-
             Jumping();
 
             Invoke(nameof(RestJumping), jumpCooldown);
@@ -105,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        //player model control
         moveDirection = body.forward * verticalInput + body.right * horizantalInput;
 
         //on ground
@@ -139,6 +139,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RestJumping()
     {
-        jump = true;
+        readyJump = true;
     }
 }

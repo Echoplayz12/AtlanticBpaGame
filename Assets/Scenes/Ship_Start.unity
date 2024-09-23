@@ -306,16 +306,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
-  runSpeed: 8
-  gDrag: 5
-  startYScale: 1
+  runSpeed: 50
+  gDrag: 18
   crouchSpeed: 3
-  crouchYScale: 0.9
-  jumpForce: 10
-  jumpCooldown: 0.3
-  airMultiplier: 1
+  jumpForce: 6
+  jumpCooldown: 0.2
+  airMultiplier: 0.5
   jumpKey: 32
-  playerHeight: 2
+  runKey: 304
+  crouchKey: 306
+  crouchYScale: 0.8
+  startYScale: 1
+  playerHeight: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8

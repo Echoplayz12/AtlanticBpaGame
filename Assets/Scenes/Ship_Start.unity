@@ -42,6 +42,7 @@ RenderSettings:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 =======
   m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
@@ -52,6 +53,9 @@ RenderSettings:
   m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 >>>>>>> 0013675a19209a835e3af3688839603ca986f278
 >>>>>>> parent of aeada29 (Revert "Update Ship_Start.unity")
+=======
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+>>>>>>> parent of 1faf10d (commit-runnign and jumping DONE)
 =======
   m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 >>>>>>> parent of 1faf10d (commit-runnign and jumping DONE)
@@ -757,6 +761,7 @@ Transform:
   m_ConstrainProportionsScale: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Children:
   - {fileID: 995396276}
   - {fileID: 644905943}
@@ -884,6 +889,8 @@ Transform:
   m_LocalPosition: {x: -0.027, y: 0.442, z: -0.053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+>>>>>>> parent of 1faf10d (commit-runnign and jumping DONE)
 =======
 >>>>>>> parent of 1faf10d (commit-runnign and jumping DONE)
 =======

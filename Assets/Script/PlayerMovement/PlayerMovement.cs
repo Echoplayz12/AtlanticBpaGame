@@ -82,11 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
-<<<<<<< HEAD
 
-=======
-        if ()
->>>>>>> parent of 1faf10d (commit-runnign and jumping DONE)
     }
 
     private void FixedUpdate()

@@ -19,10 +19,10 @@ class Log{
     int hidden_value = 0;
 }
 
-    static void Main(string[] args){
+    /*static void Main(string[] args){
         Profile profile_1 = new Profile();
         Profile profile_2 = new Profile();
         Profile profile_3 = new Profile();
 
         
-    }
+    }*/

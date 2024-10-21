@@ -7,6 +7,17 @@ class Profile{
     int artifacts_collected = 0;
     int logs_collected = 0;
     bool selected_profile = false;
+
+
+}
+
+class Pickup{
+    string pickup_name = "";
+    int pickup_id = 0;
+
+    static void PickUp_Item(){
+
+    }
 }
 class Artifact{
     string artifact_name = "Artifact";
@@ -19,10 +30,6 @@ class Log{
     int hidden_value = 0;
 }
 
-    /*static void Main(string[] args){
-        Profile profile_1 = new Profile();
-        Profile profile_2 = new Profile();
-        Profile profile_3 = new Profile();
-
-        
-    }*/
+public class SaveSystem : MonoBehavior{
+    
+}

@@ -30,6 +30,6 @@ class Log{
     int hidden_value = 0;
 }
 
-public class SaveSystem : MonoBehavior{
+//public class SaveSystem : MonoBehavior{
     
-}
+//}

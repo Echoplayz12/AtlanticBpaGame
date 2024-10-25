@@ -3,15 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 class Profile{
-    string profile_name = "Profile_1";
-    int artifacts_collected = 0;
-    int logs_collected = 0;
-    bool selected_profile = false;
+    //Fields of the profile class to be use in the object of which will be used in the save system
+    //The profile contains all save data to be put in a psuedo CSV file 
+   private string profile_name;
+   private int num_artifacts_collected = 0;
+   private int[] artifacts_collected = {};
+   private int num_logs_collected = 0;
+   private int[] logs_collected = {};
+   private bool selected_profile = false;
+    //Profile object constructor
+    public Profile(){
+        profile_name = "NewProfile";
+        num_artifacts_collected = 0;
+        artifacts_collected = {};
+        num_logs_collected = 0;
+        logs_collected = {};
+        selected_profile = false;
+    }
 
+    public string Profile_Name{
+        get {return profile_name;}
+        set {profile_name = name_entry;}
+    }
+    public int Num_Artifacts_Collected{
+        get {return num_artifacts_collected;}
+        set {num_artifacts_collected = num_artifacts_collected+1;}
+    }
+    public int[] Artifacts_Collected{
+        get {return artifacts_collected;}
+        set {artifacts_collected}
+    }
 
 }
 
-class Pickup{
+public class Pickup{
     string pickup_name = "";
     int pickup_id = 0;
 
@@ -19,12 +44,12 @@ class Pickup{
 
     }
 }
-class Artifact{
+public class Artifact{
     string artifact_name = "Artifact";
     int artifact_id = 1;
     bool log_attached = false;
 }
-class Log{
+public class Log{
     int log_number = 1;
     string log_text = "*Log Text";
     int hidden_value = 0;

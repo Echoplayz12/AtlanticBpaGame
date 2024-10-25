@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Open_Profile_Menu : MonoBehaviour
+
+public class Profile_Selector : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,4 +16,6 @@ public class Open_Profile_Menu : MonoBehaviour
     {
         
     }
+    
+    
 }

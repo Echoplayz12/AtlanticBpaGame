@@ -12,6 +12,6 @@ public class MovingOb : MonoBehaviour
     void Update()
     {
         //transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
-        transform.position = Vector3.SmoothDamp(transform.position, coord, ref currentVelocity, smoothTime;
+        //transform.position = Vector3.SmoothDamp(transform.position, coord, ref currentVelocity, smoothTime;
     }
 }

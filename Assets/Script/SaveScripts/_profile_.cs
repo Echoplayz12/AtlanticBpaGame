@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Profile{
+class Profile
+{
     //Fields of the profile class to be use in the object of which will be used in the save system
     //The profile contains all save data to be put in a psuedo CSV file 
     
@@ -13,7 +14,8 @@ class Profile{
    private int[] logs_collected = {};
    private bool selected_profile = false;
     //Profile object constructor
-    public Profile(){
+    public Profile()
+    {
         profile_name = "NewProfile";
         num_artifacts_collected = 0;
         artifacts_collected = artifacts_collected;
@@ -26,9 +28,10 @@ class Profile{
         get {return profile_name;}
         set {profile_name = profile_name;}
     }
-    public int Num_Artifacts_Collected{
-        get {return num_artifacts_collected;}
-        set {num_artifacts_collected = num_artifacts_collected+1;}
+    public int Num_Artifacts_Collected
+    {
+        get { return num_artifacts_collected; }
+        set { num_artifacts_collected = num_artifacts_collected + 1; }
     }
     public int[] Artifacts_Collected{
         get {return artifacts_collected;}
@@ -37,15 +40,18 @@ class Profile{
 
 }
 
-public class Pickup{
+public class Pickup
+{
     string pickup_name = "";
     int pickup_id = 0;
 
-    static void PickUp_Item(){
+    static void PickUp_Item()
+    {
 
     }
 }
-public class Artifact{
+public class Artifact
+{
     string artifact_name = "Artifact";
     public int artifact_id = 1;
     bool log_attached = false;
@@ -61,12 +67,14 @@ public class Artifact{
         set {artifact_id = artifact_id+1;}
     }
 }
-public class Log{
+public class Log
+{
     int log_number = 1;
     string log_text = "*Log Text";
     int hidden_value = 0;
 }
 
-//public class SaveSystem : MonoBehavior{
-    
-//}
+public class SaveSystem : MonoBehavior
+{
+
+}

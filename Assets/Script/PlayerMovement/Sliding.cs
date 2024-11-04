@@ -59,7 +59,7 @@ public class Sliding : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (isSliding) 
+        if (isSliding)
         {
             SlidingMovement();
         }

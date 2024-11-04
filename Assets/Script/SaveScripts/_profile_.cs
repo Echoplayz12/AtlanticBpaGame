@@ -5,6 +5,7 @@ using UnityEngine;
 class Profile{
     //Fields of the profile class to be use in the object of which will be used in the save system
     //The profile contains all save data to be put in a psuedo CSV file 
+    
    private string profile_name;
    private int num_artifacts_collected = 0;
    private int[] artifacts_collected = {};
@@ -15,15 +16,15 @@ class Profile{
     public Profile(){
         profile_name = "NewProfile";
         num_artifacts_collected = 0;
-        artifacts_collected = {};
+        artifacts_collected = artifacts_collected;
         num_logs_collected = 0;
-        logs_collected = {};
+        logs_collected = logs_collected;
         selected_profile = false;
     }
 
     public string Profile_Name{
         get {return profile_name;}
-        set {profile_name = name_entry;}
+        set {profile_name = profile_name;}
     }
     public int Num_Artifacts_Collected{
         get {return num_artifacts_collected;}
@@ -31,7 +32,7 @@ class Profile{
     }
     public int[] Artifacts_Collected{
         get {return artifacts_collected;}
-        set {artifacts_collected}
+        set {artifacts_collected[num_artifacts_collected] = 0;}
     }
 
 }
@@ -46,8 +47,19 @@ public class Pickup{
 }
 public class Artifact{
     string artifact_name = "Artifact";
-    int artifact_id = 1;
+    public int artifact_id = 1;
     bool log_attached = false;
+
+    public Artifact(){
+        artifact_name=artifact_name;
+        artifact_id = artifact_id;
+        log_attached = log_attached;
+    }
+    
+    public int Artifact_ID{
+        get {return artifact_id;}
+        set {artifact_id = artifact_id+1;}
+    }
 }
 public class Log{
     int log_number = 1;

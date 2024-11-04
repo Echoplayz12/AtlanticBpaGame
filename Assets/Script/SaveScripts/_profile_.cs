@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Profile
+class Profile: MonoBehaviour
 {
     //Fields of the profile class to be use in the object of which will be used in the save system
     //The profile contains all save data to be put in a psuedo CSV file 
@@ -23,24 +23,27 @@ class Profile
         logs_collected = logs_collected;
         selected_profile = false;
     }
-
+    //Getters and Setters for the profile object
     public string Profile_Name{
         get {return profile_name;}
         set {profile_name = profile_name;}
     }
-    public int Num_Artifacts_Collected
-    {
+    public int Num_Artifacts_Collected{
         get { return num_artifacts_collected; }
-        set { num_artifacts_collected = num_artifacts_collected + 1; }
+        set { num_artifacts_collected = num_artifacts_collected++; }
     }
     public int[] Artifacts_Collected{
         get {return artifacts_collected;}
         set {artifacts_collected[num_artifacts_collected] = 0;}
     }
+    public int Num_Logs_Collected{
+        get { return num_logs_collected;}
+        set {num_logs_collected++;}
+    }
 
 }
-
-public class Pickup
+//General PickUp class of which the artifacts and logs are derived from
+public class Pickup: MonoBehaviour
 {
     string pickup_name = "";
     int pickup_id = 0;
@@ -50,7 +53,8 @@ public class Pickup
 
     }
 }
-public class Artifact
+//Artifact class which holds the artifact id which are put in the profile object
+public class Artifact: MonoBehaviour
 {
     string artifact_name = "Artifact";
     public int artifact_id = 1;
@@ -67,14 +71,16 @@ public class Artifact
         set {artifact_id = artifact_id+1;}
     }
 }
-public class Log
+//Log class which holds the log id which are put in the profile object
+
+public class Log: MonoBehaviour
 {
     int log_number = 1;
     string log_text = "*Log Text";
     int hidden_value = 0;
 }
 
-public class SaveSystem : MonoBehavior
+/*public class SaveSystem : MonoBehavior
 {
 
-}
+}*/

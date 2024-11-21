@@ -23,10 +23,7 @@ class Profile: MonoBehaviour
         logs_collected = logs_collected;
         selected_profile = false;
     }
-   public string Profile_Name
-    {
-        get { return profile_name; }
-        set { profile_name = profile_name; }
+    //Getters and Setters for the profile object
     public string Profile_Name{
         get {return profile_name;}
         set {profile_name = profile_name;}
@@ -39,6 +36,10 @@ class Profile: MonoBehaviour
     {
         get { return artifacts_collected; }
         set { artifacts_collected[num_artifacts_collected] = 0; }
+    }
+    public int Num_Logs_Collected{
+        get { return num_logs_collected;}
+        set {num_logs_collected++;}
     }
     public int Num_Logs_Collected{
         get { return num_logs_collected;}

@@ -41,14 +41,7 @@ class Profile: MonoBehaviour
         get { return num_logs_collected;}
         set {num_logs_collected++;}
     }
-    //public int Num_Logs_Collected{
-    //    get { return num_logs_collected;}
-    //    set {num_logs_collected++;}
-    //}
-    //public int Num_Logs_Collected{
-    //    get { return num_logs_collected;}
-    //    set {num_logs_collected++;}
-    //}
+
 
 }
 //General PickUp class of which the artifacts and logs are derived from

@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
+        
         MyInput();
         SpeedControl();
         StateHandler();
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
             rb.drag = grDrag;
         else
-            rb.drag = 0;
+            rb.drag = 1.8f;
     }
 
     private void FixedUpdate()
@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         // in air
         else if (!grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 5f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 5f * airMultiplier, ForceMode.Impulse);
         }
     }
 
@@ -178,9 +178,23 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
     }
     private void ResetJump()
     {
         readyToJump = true;
     }
+
+    //Here is for the nextlevel teleportation
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Door"))
+        {
+            //uncommant the code and input the scene number in between the parentheses
+            //And changethe tag on the object in the UNITY or create a tag 
+
+            //SceneManager.LoadScene();
+        }
+    }
+
 }

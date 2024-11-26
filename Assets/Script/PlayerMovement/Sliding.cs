@@ -84,7 +84,4 @@ public class Sliding : MonoBehaviour
 
         playerObject.localScale = new Vector3(playerObject.localScale.x, StartYScale, playerObject.localScale.z);
     }
-
-
-
 }

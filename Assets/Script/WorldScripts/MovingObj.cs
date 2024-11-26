@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class MovingObj : MonoBehaviour
 {
-    public Transform[] wayPoint;
-    public int targetPoint;
-    public float speed;
+    public GameObject Player;
 
-    // Update is called once per frame
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        targetPoint = 0;
-    }
-    void Update()
-    {   
-        for (int i = 0; i < 1;)
+        if (other.gameObject == Player)
         {
-            transform.position = Vector3.MoveTowards(transform.position, wayPoint[0].position, speed * Time.deltaTime);
+            Player.transform.parent = transform;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == Player)
+        {
+            Player.transform.parent = null;
+        }
+    }
+
 }

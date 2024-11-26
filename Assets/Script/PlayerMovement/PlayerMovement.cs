@@ -34,14 +34,14 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     bool grounded;
 
-    public Transform orientation;
-
     float horizontalInput;
     float verticalInput;
 
     Vector3 moveDirection;
 
-    Rigidbody rb;
+    public  Rigidbody rb;
+    public Camera camPos;
+    public Transform orientation;
 
     public MovementState state;
     public enum MovementState
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.4f);
         
         MyInput();
         SpeedControl();
@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         // in air
         else if (!grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 5f * airMultiplier, ForceMode.Impulse);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 5f * airMultiplier, ForceMode.Force);
         }
     }
 

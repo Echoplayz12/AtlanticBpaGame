@@ -15,14 +15,11 @@ public class Click_PickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("E")){
+        if (Input.GetKey(KeyCode.E)){
             if (PickUp == getClickedObject(out RaycastHit hit))
             {
                 print("clicked");
             }
-        }
-        if(Input.GetButtonUp("E")){
-            print("Click is off");
         }
     }
 

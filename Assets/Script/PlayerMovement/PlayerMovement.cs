@@ -193,8 +193,7 @@ public class PlayerMovement : MonoBehaviour
             //uncommant the code and input the scene number in between the parentheses
             //And changethe tag on the object in the UNITY or create a tag 
 
-            //SceneManager.LoadScene();
+            SceneManager.LoadScene(3);
         }
     }
-
 }

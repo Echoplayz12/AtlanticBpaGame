@@ -23,22 +23,22 @@ public class Click_PickUp : MonoBehaviour
         }
     }
 
-    //GameObject getClickedObject(out RaycastHit hit)
-    //{
-    //    GameObject target = null;
-    //    Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //    if (Physics.Raycast(Ray.origin, Ray.direction = 10, out hit))
-    //    {
-    //        if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
-    //        return target;
-    //    }
-    //}
-    //private bool isPointerOverUIObject()
-    //{
-    //    PointerEventData ped = new PointerEventData(EventSystem.current);
-    //    ped.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-    //    List<RaycastResult> results = new List<RaycastResult>();
-    //    EventSystem.current.RaycastAll(ped, results);
-    //    return results.Count > 0;
-    //}
+    GameObject getClickedObject(out RaycastHit hit)
+    {
+        GameObject target = null;
+        Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(Ray.origin, Ray.direction = 10, out hit))
+        {
+            if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
+            return target;
+        }
+    }
+    private bool isPointerOverUIObject()
+    {
+        PointerEventData ped = new PointerEventData(EventSystem.current);
+        ped.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(ped, results);
+        return results.Count > 0;
+    }
 }

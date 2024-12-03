@@ -20,13 +20,13 @@ public class SceondPlayerMove : MonoBehaviour
     [Header("Runtime")]
     Vector3 newVelocity;
     bool isGrouned = false;
-    bool isJumping = false;
+    //bool isJumping;
     float vyCache;
 
     // Start is called before the first frame update
     void Start()
     {
-       //makes the cursor not visible and locks it
+        //makes the cursor not visible and locks it
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -93,7 +93,7 @@ public class SceondPlayerMove : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         isGrouned = true;
-        isJumping = false;
+        //isJumping = false;
     }
     void OnCollisionExit(Collision collision)
     {

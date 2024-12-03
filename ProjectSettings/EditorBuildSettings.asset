@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ShipStart.unity
     guid: 8aa9ab7061e7e6a48954e8a008dab6a2
   - enabled: 1
+    path: Assets/Scenes/LowPolyDungeonsLite_Demo.unity
+    guid: 8fdb66b3d5f94c2488dec767fb72a89e
+  - enabled: 1
     path: Assets/Scenes/practice.unity
     guid: f3f43b9255aa58c4182a0190f8b185d1
   m_configObjects: {}

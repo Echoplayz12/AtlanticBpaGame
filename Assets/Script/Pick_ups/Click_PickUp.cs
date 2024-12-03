@@ -15,30 +15,34 @@ public class Click_PickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)){
-
+        if (Input.GetButtonDown("E")){
+            if (PickUp == getClickedObject(out RaycastHit hit))
+            {
+                print("clicked");
+            }
         }
-        if(Input.GetMouseButtonUp(0)){
-
+        if(Input.GetButtonUp("E")){
+            print("Click is off");
         }
     }
 
-    //GameObject getClickedObject ( out RaycastHit hit)
-    //{
-    //    GameObject target = null;
-    //    Ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-    //    if (Physics.Raycast (Ray.origin, Ray.direction =10, out hit))
-    //    {
-    //        if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
-    //        return target;
-    //    }
-    //}
-    //private bool isPointerOverUIObject()
-    //{
-    //    PointerEventData ped = new PointerEventData(EventSystem.current);
-    //    ped.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-    //    List<RaycastResult> results = new List<RaycastResult>();
-    //    EventSystem.current.RaycastAll(ped, results);
-    //    return results.Count > 0;
-    //}
+    GameObject getClickedObject(out RaycastHit hit)
+    {
+        GameObject target = null;
+       Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+        if (Physics.Raycast(ray.origin, ray.direction = Vector3.forward, out hit))
+        {
+            if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
+           
+        }
+        return target;
+    }
+    private bool isPointerOverUIObject()
+    {
+        PointerEventData ped = new PointerEventData(EventSystem.current);
+        ped.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(ped, results);
+        return results.Count > 0;
+    }
 }

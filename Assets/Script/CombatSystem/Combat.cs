@@ -6,7 +6,7 @@ public class Combat : MonoBehaviour
 {
     public Transform attackPoint;
     public float attackRange = 1.2f;
-    public LayerMask enemyLayers;
+    //public LayerMask enemyLayers;
 
    // Update is called once per frame
     void Update()
@@ -15,6 +15,6 @@ public class Combat : MonoBehaviour
     }
     void Attack()
     {
-        Physics.OverlapBox(attackPoint.position, attackRange, enemyLayers);
+       // Physics.OverlapBox(attackPoint.position, attackRange, enemyLayers);
     }
 }

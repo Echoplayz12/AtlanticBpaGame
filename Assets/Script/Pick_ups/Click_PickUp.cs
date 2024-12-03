@@ -23,11 +23,11 @@ public class Click_PickUp : MonoBehaviour
         }
     }
 
-    //GameObject getClickedObject ( out RaycastHit hit)
+    //GameObject getClickedObject(out RaycastHit hit)
     //{
     //    GameObject target = null;
-    //    Ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-    //    if (Physics.Raycast (Ray.origin, Ray.direction =10, out hit))
+    //    Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    if (Physics.Raycast(Ray.origin, Ray.direction = 10, out hit))
     //    {
     //        if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
     //        return target;

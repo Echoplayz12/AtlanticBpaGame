@@ -17,6 +17,7 @@ public class Click_PickUp : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E))
         {
+            
             if (PickUp == getClickedObject(out RaycastHit hit))
             {
                 print("clicked");

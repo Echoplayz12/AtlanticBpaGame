@@ -9,29 +9,31 @@ public class Click_PickUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)){
-
-        }
-        if(Input.GetMouseButtonUp(0)){
-
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (PickUp == getClickedObject(out RaycastHit hit))
+            {
+                print("clicked");
+            }
         }
     }
 
     GameObject getClickedObject(out RaycastHit hit)
     {
         GameObject target = null;
-        Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(Ray.origin, Ray.direction = 10, out hit))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray.origin, ray.direction = Vector3.forward, out hit))
         {
             if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
-            return target;
+
         }
+        return target;
     }
     private bool isPointerOverUIObject()
     {
@@ -41,4 +43,5 @@ public class Click_PickUp : MonoBehaviour
         EventSystem.current.RaycastAll(ped, results);
         return results.Count > 0;
     }
+}
 }

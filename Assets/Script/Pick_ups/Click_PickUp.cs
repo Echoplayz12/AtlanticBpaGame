@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Click_PickUp : MonoBehaviour
@@ -21,6 +22,7 @@ public class Click_PickUp : MonoBehaviour
             if (PickUp == getClickedObject(out RaycastHit hit))
             {
                 print("clicked");
+                Destroy(PickUp);
             }
         }
     }
@@ -29,7 +31,7 @@ public class Click_PickUp : MonoBehaviour
     {
         GameObject target = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray.origin, ray.direction = Vector3.forward, out hit))
+        if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
         {
             if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
 

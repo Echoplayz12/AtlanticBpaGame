@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Threading;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -91,6 +92,14 @@ public class AIEnemy : MonoBehaviour
             Patroling();
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
+        Gizmos.DrawWireSphere(transform.position, viewAngle);
+    }
+
 
     //chasing player method, if the player 
     private void ChasingPlayer()

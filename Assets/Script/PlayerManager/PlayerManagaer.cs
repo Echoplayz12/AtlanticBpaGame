@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerManagaer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region Singleton
+    
+    public static PlayerManagaer Instance;
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        Instance = this;    
     }
+   #endregion
+
+    public GameObject player;
 }

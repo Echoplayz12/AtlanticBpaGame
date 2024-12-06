@@ -196,4 +196,24 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(3);
         }
     }
+
+    //Interactble with World
+    void Interactb()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //GameObject getClickedObject(out RaycastHit hit)
+            //{
+            //    GameObject target = null;
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
+            //    {
+            //        if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
+
+
+            //    }
+            //    return target;
+            //}
+        }
+    }
 }

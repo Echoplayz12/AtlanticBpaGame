@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 139553751}
   - component: {fileID: 139553756}
   - component: {fileID: 139553757}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnmeyCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 533698044}
   - component: {fileID: 533698047}
   - component: {fileID: 533698046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1974,12 +1974,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971312dd881b0f3488c040f653a4fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth:
-    baseValue: 0
+  maxHealth: 100
   damage:
-    baseValue: 0
+    baseValue: 100
   weapon:
-    baseValue: 0
+    baseValue: 5
 --- !u!1 &1337783420
 GameObject:
   m_ObjectHideFlags: 0

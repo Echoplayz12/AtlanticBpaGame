@@ -7,6 +7,7 @@ TagManager:
   - Profile_Function
   - Door
   - Enemy
+  - DoorLevel3
   layers:
   - Default
   - TransparentFX

@@ -2,28 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Interactable
 {
-    [SerializeField] float Health = 100;
-    [SerializeField] UnityEngine.Object Object;
-    // Update is called once per frame
-
-    public void Update()
+/*    public override void Interact()
     {
-
-
+        base.Interact();
     }
-    public void TakeDamage(float damageAmount)
-    {
-        Health -= damageAmount;
-
-        if (Health <= 0)
-        {
-            Destroy(Object);
-        }
-    }
-    
-
-
-
-}
+*/}

@@ -37,6 +37,7 @@ public class Click_PickUp : MonoBehaviour
         {
             if (!isPointerOverUIObject()) { target = hit.collider.gameObject; }
 
+
         }
         return target;
     }

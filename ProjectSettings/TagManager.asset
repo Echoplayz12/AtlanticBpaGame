@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Profile_Function
   - Door
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - whatIsGround
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Obstacle
+  - Enemy
   - 
   - 
   - 

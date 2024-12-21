@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIControlV2 : MonoBehaviour
+public class AIControlV2 : PlayerStats
 {
-    public float viewRadius = 10f;
+    public float viewRadius;
+    public float atkRadius;
+    public float damage;
+    public float atkTimer;
+    public bool inRange;
+
     Transform target;
     NavMeshAgent agent;
-
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +38,36 @@ public class AIControlV2 : MonoBehaviour
                 FaceTarget();
             }
         }
-
+        //learned that with out a set timer for enemy attacking the player health would drop to 0 in an instance lol
+        if (inRange == true)
+        {
+            TakeDamage(damage);
+        }
+    }
+    private void FixedUpdate()
+    {
+        InRange();
+    }
+    public override void TakeDamage(float Damage)
+    {
+        Damage = damage;
+        base.TakeDamage(Damage);
+    }
+    void InRange()
+    {
+        float distance = Vector3.Distance(transform.position, target.position);
+        if (distance <= atkRadius)
+        {
+            atkTimer -= Time.deltaTime;
+            if (atkTimer < 0)
+            {
+                inRange = true;
+            }
+            else
+            {
+                inRange = false;
+            }
+        }
     }
     void FaceTarget()
     {
@@ -44,5 +79,7 @@ public class AIControlV2 : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, viewRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, atkRadius);
     }
 }

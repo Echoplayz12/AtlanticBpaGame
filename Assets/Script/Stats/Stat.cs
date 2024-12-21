@@ -8,9 +8,9 @@ public class Stat
     //serialized class for handling Stats
 
     [SerializeField]
-    private int baseValue;
+    private float baseValue;
 
-    public int getValue()
+    public float getValue()
     {
         return baseValue;
     }

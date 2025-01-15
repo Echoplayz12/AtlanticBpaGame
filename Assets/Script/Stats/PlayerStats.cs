@@ -62,9 +62,10 @@ public class PlayerStats : MonoBehaviour
     }
     public virtual void Die()
     {
-        //Die animation or rangdoll
+        //Die animation, ragdoll or just loading different scene
         Debug.Log(transform.name + " has " + " Died!");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
-
 }

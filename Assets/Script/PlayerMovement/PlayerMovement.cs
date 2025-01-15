@@ -196,13 +196,4 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(3);
         }
     }
-
-    ////Interactble with World
-    //void Interactb()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-
-    //    }
-    //}
 }

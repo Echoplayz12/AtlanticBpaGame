@@ -7,10 +7,12 @@ using UnityEngine.EventSystems;
 public class Click_PickUp : MonoBehaviour
 {
     public GameObject PickUp;
+    public GameObject UIPickeup;
+    public GameObject PickUpText;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
